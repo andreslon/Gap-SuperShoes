@@ -1,42 +1,126 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/dist/css/AdminLTE.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/dist/css/skins/skin-blue.css")">
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Header -->
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="~/Home/Index" class="logo">
+
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><img src="~/Content/logo.png" style="width:30px;" /></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><img src="~/Content/logo.png" style="width:30px;margin:5px" /><b>Super Shoes</b></span>
+            </a>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">
+                        Toggle navigation
+                    </span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu">
+                            <a href="~/Help">API</a>
+                        </li>
+
+                        <!-- Control Sidebar Toggle Button -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+             
+                <ul class="sidebar-menu">
+                    
+                    <li class="header">Administration</li>
+                    <li>
+                        <a href="@Url.Action("Index", "Articles")">
+                            <i class="fa fa-th"></i>                          
+                            <span>Articles</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Stores")">
+                            <i class="fa fa-sitemap"></i>
+                            <span>Stores</span>
+                        </a>
+                    </li> 
+
                 </ul>
+                <!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content">
+                <div>
+                    @RenderBody()
+                    <hr />
+                    @*<footer>
+                            <p>
+                                &copy; @DateTime.Now.Year - Super Shoes
+                            </p>
+                        </footer>*@
+                </div>
+                @RenderSection("scripts", required: false)
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                Sistema de Pedidos
             </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; @DateTime.Now.Year <a href="#">alsoftware</a>.</strong> All rights reserved.
+        </footer>
+        <!-- Control Sidebar -->
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg">
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 2.1.4 -->
+    <script src="@Url.Content("~/Content/plugins/jQuery/jQuery-2.1.4.min.js")"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <!-- AdminLTE App -->
+    <script src="@Url.Content("~/Content/dist/js/app.min.js")"></script>
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+         Both of these plugins are recommended to enhance the
+         user experience. Slimscroll is required when using the
+         fixed layout. -->
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

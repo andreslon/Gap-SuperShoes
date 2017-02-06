@@ -9,9 +9,9 @@ namespace SuperShoes.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            // Configuración y servicios de API web
 
-            // Web API routes
+            // Rutas de API web
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -19,6 +19,9 @@ namespace SuperShoes.Api
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
         }
     }
 }

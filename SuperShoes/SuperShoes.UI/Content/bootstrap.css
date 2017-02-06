@@ -2225,7 +2225,7 @@ fieldset[disabled] .btn-danger.active {
 .open .dropdown-toggle.btn-success {
   color: #ffffff;
   background-color: #47a447;
-  border-color: #398439;
+  border-color: #128ea8;
 }
 
 .btn-success:active,
@@ -4856,7 +4856,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .label-success[href]:hover,
 .label-success[href]:focus {
-  background-color: #449d44;
+  background-color: #128ea8;
 }
 
 .label-info {
