@@ -16,9 +16,12 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using SuperShoes.Api.Utils;
 using SuperShoes.Api.Dtos.Responses;
+using SuperShoes.Api.Utils.Authentication;
 
 namespace SuperShoes.Api.Controllers
 {
+    [WebAPIBasicAuthentication]
+    [Authorize]
     public class ArticlesController : ApiController
     {
         private SuperShoesContext db = new SuperShoesContext();

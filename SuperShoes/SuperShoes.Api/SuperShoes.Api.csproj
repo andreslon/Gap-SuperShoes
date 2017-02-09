@@ -178,6 +178,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dtos\Responses\ErrorResponse.cs" />
+    <Compile Include="Utils\Authentication\AddChallengeOnUnauthorizedResult.cs" />
+    <Compile Include="Utils\Authentication\BasicAuthHttpModule.cs" />
+    <Compile Include="Utils\Authentication\HttpAuthenticationChallengeContextExtensions.cs" />
+    <Compile Include="Utils\Authentication\WebAPIBasicAuthentication.cs" />
     <Compile Include="Utils\Filters\GeneralResponseFilter.cs" />
   </ItemGroup>
   <ItemGroup>

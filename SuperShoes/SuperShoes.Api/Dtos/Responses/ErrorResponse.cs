@@ -5,10 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Net.Http;
+using System.Web.Http;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SuperShoes.Api.Dtos.Responses
 {
-    public class ErrorResponse
+    public class ErrorResponse : IHttpActionResult
     {
         [JsonProperty("success")]
         public bool success { get; set; }
@@ -34,7 +37,10 @@ namespace SuperShoes.Api.Dtos.Responses
             response.Content = new StringContent(JsonConvert.SerializeObject(this), System.Text.Encoding.UTF8, "application/json");
             return response;
         }
-         
 
+        public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
+        {
+            return Task.FromResult(actionExecuted()); 
+        }
     }
 }
