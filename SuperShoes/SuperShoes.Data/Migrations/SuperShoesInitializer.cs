@@ -25,7 +25,7 @@ namespace SuperShoes.Data.Migrations
 
             var articles = new List<Article>
             {
-                new Article() { Name="Article Base", Descripcion="article initial of main store", Price=1000, Store=stores[0], TotalInShelf=2, TotalInVault=1 }
+                new Article() { Name="Article Base", Description="article initial of main store", Price=1000, Store=stores[0], TotalInShelf=2, TotalInVault=1 }
             };
 
             articles.ForEach(s => context.Articles.Add(s));

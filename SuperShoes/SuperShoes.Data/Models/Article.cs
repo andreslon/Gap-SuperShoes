@@ -16,10 +16,12 @@ namespace SuperShoes.Data.Models
         public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public string Descripcion { get; set; }
+        public string Description { get; set; }
         [Required]
         public double Price { get; set; }
+        [Display(Name = "Total In Shelf")]
         public int TotalInShelf { get; set; }
+        [Display(Name = "Total In Vault")]
         public int TotalInVault { get; set; }
         [Required]
         public Store Store { get; set; }

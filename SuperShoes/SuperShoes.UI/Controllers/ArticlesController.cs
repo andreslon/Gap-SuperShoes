@@ -48,7 +48,7 @@ namespace SuperShoes.UI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Descripcion,Price,TotalInShelf,TotalInVault")] Article article)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Description,Price,TotalInShelf,TotalInVault")] Article article)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace SuperShoes.UI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Descripcion,Price,TotalInShelf,TotalInVault")] Article article)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Description,Price,TotalInShelf,TotalInVault")] Article article)
         {
             if (ModelState.IsValid)
             {
