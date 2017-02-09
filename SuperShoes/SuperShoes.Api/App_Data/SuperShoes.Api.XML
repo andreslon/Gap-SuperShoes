@@ -481,5 +481,23 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:SuperShoes.Api.Controllers.ArticlesController.GetArticles">
+            <summary>
+            Load all the articles that are in the Database.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SuperShoes.Api.Controllers.ArticlesController.GetArticlesStore(System.String)">
+            <summary>
+            Load all the articles from a specific store that are in the Database.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SuperShoes.Api.Utils.Filters.GeneralResponseFilter">
+            <summary>
+            All the requests will follow a simple basic format for the errors and another one for the success.
+            </summary>
+        </member>
     </members>
 </doc>

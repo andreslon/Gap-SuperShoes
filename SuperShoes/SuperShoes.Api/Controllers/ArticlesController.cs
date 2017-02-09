@@ -11,6 +11,11 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using SuperShoes.Data.Context;
 using SuperShoes.Data.Models;
+using SuperShoes.Api.Utils.Filters;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using SuperShoes.Api.Utils;
+using SuperShoes.Api.Dtos.Responses;
 
 namespace SuperShoes.Api.Controllers
 {
@@ -18,23 +23,80 @@ namespace SuperShoes.Api.Controllers
     {
         private SuperShoesContext db = new SuperShoesContext();
 
-        // GET: api/Articles
-        public IQueryable<Article> GetArticles()
+        /// <summary>
+        /// Load all the articles that are in the Database.
+        /// </summary>
+        /// <returns></returns>
+        [GeneralResponseFilter]
+        async public Task<JObject> GetArticles()
         {
-            return db.Articles;
+            try
+            {
+                var articles = await db.Articles.ToListAsync();
+                var baseResponse = new BaseResponse<List<Article>>();
+                return baseResponse.Get(articles, articles.Count(), "articles");
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+        }
+        /// <summary>
+        /// Load all the articles from a specific store that are in the Database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        // GET: services/articles/stores/:id
+        [GeneralResponseFilter]
+        [Route("services/articles/stores/{id}")]
+        [ResponseType(typeof(Article))]
+        async public Task<JObject> GetArticlesStore(string id)
+        {
+            Guid newGuid;
+            if (!Guid.TryParse(id, out newGuid))
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            } 
+            try
+            {
+                var articles = await db.Articles.Where(x => x.Store.Id == newGuid).ToListAsync();
+                if (articles == null || articles.Count == 0)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                var baseResponse = new BaseResponse<List<Article>>();
+                return baseResponse.Get(articles, articles.Count(), "articles");
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
         }
 
+        [GeneralResponseFilter]
         // GET: api/Articles/5
         [ResponseType(typeof(Article))]
-        public async Task<IHttpActionResult> GetArticle(Guid id)
+        public async Task<JObject> GetArticle(string id)
         {
-            Article article = await db.Articles.FindAsync(id);
-            if (article == null)
+            Guid newGuid;
+            if (!Guid.TryParse(id, out newGuid))
             {
-                return NotFound();
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
-
-            return Ok(article);
+            try
+            {
+                var article = await db.Articles.FindAsync(newGuid);
+                if (article == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                var baseResponse = new BaseResponse<Article>();
+                return baseResponse.Get(article, 0, "article");
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
         }
 
         // PUT: api/Articles/5
